@@ -3,8 +3,8 @@ project(quantus_playground)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES
-    blink/CMakeLists.txt
-    blink/main.cc)
+include_directories(blink)
+include_directories(led_pulse)
 
-add_executable(quantus_playground ${SOURCE_FILES})
+add_subdirectory(blink)
+add_subdirectory(led_pulse)

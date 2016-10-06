@@ -1,5 +1,5 @@
 #ifndef F_CPU
-#define F_CPU 1000000UL // 1 MHz
+#define F_CPU 8000000UL // 8 MHz
 #endif
 
 #include <avr/io.h>
@@ -14,7 +14,7 @@ int main() {
     PORTD ^= (1<<PORTD5);
     PORTD ^= (1<<PORTD6);
     PORTB ^= (1<<PORTB1);
-    _delay_ms(1000);
+    _delay_ms(5000);
   }
 }
 
@@ -23,10 +23,15 @@ int main() {
 
 
 /*
+ * BUN FUSE BITS TO SET CRYSTAL
+ * avrdude -c stk500v2 -P /dev/cu.usbmodem00161782 -p atmega328p -U lfuse:w:0xff:m -U hfuse:w:0xC9:m
+ * 
+ * # COMPILE
  * avr-gcc -g -Os -mmcu=atmega328p -c main.cc
  * avr-gcc -g -mmcu=atmega328p -o main.elf main.o
  * avr-objcopy -j .text -j .data -O ihex main.elf main.hex
  *
+ * UPLOAD
  * avrdude -c stk500v2 -P /dev/cu.usbmodem00161782 -p atmega328p # "sanity check"
  * avrdude -c stk500v2 -P /dev/cu.usbmodem00161782 -p atmega328p -U flash:w:main.hex
  */

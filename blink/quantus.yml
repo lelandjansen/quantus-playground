@@ -1,0 +1,18 @@
+name: Quantus Echo
+microcontroller:
+  model: atmega328p
+  fuses:
+    low:
+      KDIV8: 1
+      CKSEL3: 1
+      CKSEL2: 1
+      CKSEL1: 1
+      CKSEL0: 1
+      SUT1: 1
+      SUT0: 1
+    extended:
+      BODLEVEL1: 0
+    high:
+      BOOTSZ1: 1
+      BOOTSZ0: 1
+      BOOTRST: 1

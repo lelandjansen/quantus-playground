@@ -14,7 +14,7 @@ int main() {
     PORTD ^= (1<<PORTD5);
     PORTD ^= (1<<PORTD6);
     PORTB ^= (1<<PORTB1);
-    _delay_ms(5000);
+    _delay_ms(1000);
   }
 }
 

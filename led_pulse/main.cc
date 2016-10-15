@@ -22,6 +22,7 @@ int main () {
 
   for (;;);
 }
+
 ISR(TIMER1_OVF_vect) {
     PORTB ^= (1 << 0); // Toggle the LED
 // }

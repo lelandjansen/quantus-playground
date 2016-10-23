@@ -1,5 +1,5 @@
 #ifndef F_CPU
-#define F_CPU 1000000UL // 1 MHz
+#define F_CPU 8000000UL // 8 MHz
 #endif
 
 #include <avr/io.h>
@@ -8,10 +8,6 @@
 // include interrupt
 // include time?
 
-
-
-
-#include <avr/io.h>
 #include <avr/interrupt.h>
 
 int main () {
@@ -24,5 +20,5 @@ int main () {
 }
 
 ISR(TIMER1_OVF_vect) {
-    PORTB ^= (1 << 0); // Toggle the LED
-// }
+  PORTB ^= (1 << 0); // Toggle the LED
+}

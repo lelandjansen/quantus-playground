@@ -5,7 +5,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-volatile int color = 0;
 
 ISR(INT0_vect) {
   PORTD ^= (1<<PORTD5);

@@ -6,46 +6,69 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-volatile int DUTY_CYCLE = 64;
+volatile int DUTY_CYCLE = 128;
 
 int main() {
-  DDRD |= (1<<DDB6);
 
-  TCCR0A |= (1<<COM0A1);
+  // red   -> OC0B
+  // green -> OC0A
+  // blue  -> OC1A
 
-  // Clear OC0A on Compare Match, set OC0A at BOTTOM (none-inverting mode).
+  // set pins as output
+  DDRD |= (1<<DDB5); // red
+  DDRD |= (1<<DDB6); // green
+  DDRB |= (1<<DDB1); // blue
+
+  // command ouput mode
+  TCCR0A |= (1<<COM0B1); // red
+  TCCR0A |= (1<<COM0A1); // green
+  TCCR1A |= (1<<COM1A1); // blue
+
+
   // interesting thought, could use inverting or none-inverting depending on LED
   //  polarity??
 
-  TCCR0A |= (1<<WGM00) | (1<<WGM01);
-  // Waveform generation mode
-  // Timer/counter mode of operation: Fast PWM
-  // TOP: 0xFF
-  // Update of OCRx at: BOTTOM
-  // TOV Flag set on: MAX
+  TCCR0A |= (1<<WGM00) | (1<<WGM01); // mode 3 fast PWM
+
+  // mode 5 Fast PWM 8 bit
+  TCCR1A |= (1<<WGM10);
+  TCCR1B |= (1<<WGM12);
+
+
+
+  ICR1 = 0x00FF;
+
 
   TIMSK0 |= (1<<TOIE0); // set overflow interrupt
+  TIMSK1 |= (1<<TOIE1); // set overflow interrupt
 
 
+  TCCR0B |= (1<<CS00); // no prescaling timer0
+  TCCR1B |= (1<<CS10); // no prescaling timer1
 
-  OCR0A = DUTY_CYCLE;
-
-  TCCR0B |= (1<<CS00); // no prescaling
 
   sei();
 
 
   for(;;) {
     DUTY_CYCLE = (++DUTY_CYCLE)%255;
-    _delay_ms(10);
+    _delay_ms(5);
   }
 
 }
 
 
+
 ISR(TIMER0_OVF_vect) {
   OCR0A = DUTY_CYCLE;
+  OCR0B = DUTY_CYCLE;
 }
+
+ISR(TIMER1_OVF_vect) {
+  OCR1A = DUTY_CYCLE;
+}
+
+
 
 
 // Waveform generation mode (WGM) p. 130

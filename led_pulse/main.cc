@@ -25,8 +25,7 @@ int main() {
   TCCR1A |= (1<<COM1A1); // blue
 
 
-  // interesting thought, could use inverting or none-inverting depending on LED
-  //  polarity??
+  // interesting thought, could use inverting or none-inverting depending on LED polarity??
 
   TCCR0A |= (1<<WGM00) | (1<<WGM01); // mode 3 fast PWM
 
@@ -36,7 +35,6 @@ int main() {
 
 
 
-  ICR1 = 0x00FF;
 
 
   TIMSK0 |= (1<<TOIE0); // set overflow interrupt

@@ -39,9 +39,6 @@ class Led {
   void Toggle() const;
  private:
   Led();
-  const bool common_anode = false;
-  int cycle_ = 0;
-  const int cycle_size_ = 255;
 };
 
 Led::Led() {}

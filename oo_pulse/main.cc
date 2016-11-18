@@ -1,5 +1,5 @@
 #ifndef F_CPU
-#define F_CPU 8000000UL // 8 MHz
+#define F_CPU 16000000UL // 16 MHz
 #endif
 
 #include <avr/io.h>
@@ -21,8 +21,8 @@ extern "C" int __cxa_guard_acquire(__guard *);
 extern "C" void __cxa_guard_release (__guard *);
 extern "C" void __cxa_guard_abort (__guard *);
 
-int __cxa_guard_acquire(__guard *g) {return !*(char *)(g);};
-void __cxa_guard_release (__guard *g) {*(char *)g = 1;};
+int __cxa_guard_acquire(__guard *g) { return !*(char *)(g); };
+void __cxa_guard_release (__guard *g) { *(char *)g = 1; };
 void __cxa_guard_abort (__guard *) {};
 
 extern "C" void __cxa_pure_virtual(void);
@@ -63,7 +63,7 @@ struct Color {
 };
 
 Color::Color() : red(0), green(0), blue(0) {}
-Color::Color(unsigned int red, unsigned int green, unsigned int blue) : red(red), green(green), blue(blue) {}
+Color::Color(unsigned char red, unsigned char green, unsigned char blue) : red(red), green(green), blue(blue) {}
 
 
 
@@ -122,11 +122,11 @@ void Led::Pulse(Color &color1, Color &color2) {
   cycle_ = (++cycle_) % cycle_size_;
 
 
-  // scale between color1 and color2
+  // Scale between color1 and color2
   Color color;
-  color.red   = helper::scale(color1.red,   color2.red);
-  color.green = helper::scale(color1.green, color2.green);
-  color.blue  = helper::scale(color1.blue,  color2.blue);
+  color.red   = helper::Scale(color1.red,   color2.red);
+  color.green = helper::Scale(color1.green, color2.green);
+  color.blue  = helper::Scale(color1.blue,  color2.blue);
 
   SetColor(color);
 }

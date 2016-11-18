@@ -3,7 +3,7 @@ project(cmake-avr)
 
 
 set(DEVICE_MODEL atmega328p)
-set(F_CPU 8000000)
+set(F_CPU 16000000)
 
 set(CMAKE_CXX_COMPILER /usr/local/Cellar/avr-gcc/4.9.3/bin/avr-g++)
 

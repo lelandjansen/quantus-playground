@@ -1,5 +1,5 @@
 #ifndef F_CPU
-#define F_CPU 8000000UL // 8 MHz
+#define F_CPU 16000000UL // 8 MHz
 #endif
 
 #include <avr/io.h>

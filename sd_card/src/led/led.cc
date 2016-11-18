@@ -16,9 +16,45 @@ void Led::Setup() const {
   DDRB |= (1<<DDB1); // BLUE  | Set 1st bit on PORTB (i.e. PB1) => output
 }
 
-void Led::On() const {
+void Led::White() const {
   PORTD |= (1<<PORTD5);
   PORTD |= (1<<PORTD6);
+  PORTB |= (1<<PORTB1);
+}
+
+void Led::Red() const {
+  PORTD |= (1<<PORTD5);
+  PORTD &= ~(1<<PORTD6);
+  PORTB &= ~(1<<PORTB1);
+}
+
+void Led::Yellow() const {
+  PORTD |= (1<<PORTD5);
+  PORTD |= (1<<PORTD6);
+  PORTB &= ~(1<<PORTB1);
+}
+
+void Led::Green() const {
+  PORTD &= ~(1<<PORTD5);
+  PORTD |= (1<<PORTD6);
+  PORTB &= ~(1<<PORTB1);
+}
+
+void Led::Cyan() const {
+  PORTD &= ~(1<<PORTD5);
+  PORTD |= (1<<PORTD6);
+  PORTB |= (1<<PORTB1);
+}
+
+void Led::Blue() const {
+  PORTD &= ~(1<<PORTD5);
+  PORTD &= ~(1<<PORTD6);
+  PORTB |= (1<<PORTB1);
+}
+
+void Led::Magenta() const {
+  PORTD |= (1<<PORTD5);
+  PORTD &= ~(1<<PORTD6);
   PORTB |= (1<<PORTB1);
 }
 

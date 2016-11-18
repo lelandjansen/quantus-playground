@@ -5,7 +5,13 @@ class Led {
  public:
   static Led &instance();
   void Setup() const;
-  void On() const;
+  void White() const;
+  void Red() const;
+  void Yellow() const;
+  void Green() const;
+  void Cyan() const;
+  void Blue() const;
+  void Magenta() const;
   void Off() const;
   void Toggle() const;
  private:

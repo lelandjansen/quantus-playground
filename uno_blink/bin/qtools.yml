@@ -1,0 +1,3 @@
+programmer:
+  model: stk500v2 # Pololu USB AVR Programmer v2
+  port: /dev/cu.usbmodem00161782
